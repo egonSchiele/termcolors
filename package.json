@@ -1,0 +1,36 @@
+{
+  "name": "termcolors",
+  "version": "0.0.20",
+  "description": "Terminal color library",
+  "homepage": "https://github.com/egonSchiele/termcolors",
+  "scripts": {
+    "build": "rm -rf dist && tsc",
+    "test": "vitest"
+  },
+  "files": [
+    "./dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
+    }
+  },
+  "type": "module",
+  "types": "./dist/index.d.ts",
+  "keywords": [
+    "terminal",
+    "color",
+    "ansi",
+    "cli",
+    "console",
+    "colors"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.11.28",
+    "typescript": "^5.4.2",
+    "vitest": "^3.2.4"
+  }
+}
