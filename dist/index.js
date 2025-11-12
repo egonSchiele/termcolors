@@ -52,7 +52,8 @@ const styles = Object.assign(Object.assign(Object.assign({}, colors), bgColors),
  */
 function createColorFunction(codes = []) {
     // The function that applies all accumulated codes to text
-    const applyColor = (text) => {
+    const applyColor = (...args) => {
+        const text = args.join(' ');
         if (codes.length === 0) {
             return text;
         }
@@ -79,6 +80,7 @@ function createColorFunction(codes = []) {
  * console.log(color.blue("this text is blue!"));
  * console.log(color.green.bold("this text is green and bold!"));
  * console.log(color.green.bgYellow("this text is green with a yellow background!"));
+ * console.log(color.green("a", "lot", "of", "words!"));
  * ```
  */
 export const color = createColorFunction();

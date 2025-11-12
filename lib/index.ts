@@ -55,7 +55,7 @@ const styles = { ...colors, ...bgColors, ...modifiers } as const;
 type StyleName = keyof typeof styles;
 
 // Type for the chainable color function
-type ColorFunction = ((text: string) => string) & {
+type ColorFunction = ((...args: any[]) => string) & {
   [K in StyleName]: ColorFunction;
 };
 
@@ -64,7 +64,8 @@ type ColorFunction = ((text: string) => string) & {
  */
 function createColorFunction(codes: string[] = []): ColorFunction {
   // The function that applies all accumulated codes to text
-  const applyColor = (text: string): string => {
+  const applyColor = (...args: any[]): string => {
+    const text = args.join(' ');
     if (codes.length === 0) {
       return text;
     }
@@ -93,6 +94,7 @@ function createColorFunction(codes: string[] = []): ColorFunction {
  * console.log(color.blue("this text is blue!"));
  * console.log(color.green.bold("this text is green and bold!"));
  * console.log(color.green.bgYellow("this text is green with a yellow background!"));
+ * console.log(color.green("a", "lot", "of", "words!"));
  * ```
  */
 export const color = createColorFunction();

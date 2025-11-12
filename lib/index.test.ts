@@ -217,4 +217,42 @@ describe('termcolors', () => {
       expect(color.green.bgYellow('this text is green with a yellow background!')).toBe('\x1b[32m\x1b[43mthis text is green with a yellow background!\x1b[0m');
     });
   });
+
+  describe('multiple arguments', () => {
+    it('should accept multiple string arguments', () => {
+      expect(color.green('a', 'lot', 'of', 'words!')).toBe('\x1b[32ma lot of words!\x1b[0m');
+    });
+
+    it('should accept multiple arguments with colors', () => {
+      expect(color.blue('hello', 'world')).toBe('\x1b[34mhello world\x1b[0m');
+    });
+
+    it('should accept multiple arguments with chained styles', () => {
+      expect(color.red.bold('multiple', 'arguments', 'test')).toBe('\x1b[31m\x1b[1mmultiple arguments test\x1b[0m');
+    });
+
+    it('should accept multiple arguments with background colors', () => {
+      expect(color.yellow.bgBlue('some', 'words', 'here')).toBe('\x1b[33m\x1b[44msome words here\x1b[0m');
+    });
+
+    it('should handle mixed types of arguments', () => {
+      expect(color.cyan('test', 123, true, 'end')).toBe('\x1b[36mtest 123 true end\x1b[0m');
+    });
+
+    it('should handle single argument (backward compatibility)', () => {
+      expect(color.magenta('single')).toBe('\x1b[35msingle\x1b[0m');
+    });
+
+    it('should handle empty arguments', () => {
+      expect(color.red()).toBe('\x1b[31m\x1b[0m');
+    });
+
+    it('should join arguments with spaces', () => {
+      expect(color.green('word1', 'word2', 'word3')).toBe('\x1b[32mword1 word2 word3\x1b[0m');
+    });
+
+    it('should work with complex chaining and multiple arguments', () => {
+      expect(color.brightCyan.bold.underline.bgBrightBlack('test', 'multiple', 'args')).toBe('\x1b[96m\x1b[1m\x1b[4m\x1b[100mtest multiple args\x1b[0m');
+    });
+  });
 });

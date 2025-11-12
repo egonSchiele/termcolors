@@ -10,6 +10,7 @@ pnpm add egonSchiele/termcolors
 ## Usage
 
 ```typescript
-import { colors } from 'termcolors';
-console.log(colors.red.bold('This is bold red text'));
+import { color } from 'termcolors';
+console.log(color.red.bold('This is bold red text'));
+console.log(color.green.bgYellow('Multiple', 'arguments', 'are', 'supported'));
 ```

@@ -37,7 +37,7 @@ declare const styles: {
     readonly brightWhite: "\u001B[97m";
 };
 type StyleName = keyof typeof styles;
-type ColorFunction = ((text: string) => string) & {
+type ColorFunction = ((...args: any[]) => string) & {
     [K in StyleName]: ColorFunction;
 };
 /**
@@ -49,6 +49,7 @@ type ColorFunction = ((text: string) => string) & {
  * console.log(color.blue("this text is blue!"));
  * console.log(color.green.bold("this text is green and bold!"));
  * console.log(color.green.bgYellow("this text is green with a yellow background!"));
+ * console.log(color.green("a", "lot", "of", "words!"));
  * ```
  */
 export declare const color: ColorFunction;
